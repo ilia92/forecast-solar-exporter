@@ -1,0 +1,8 @@
+[solar]
+latitude         = 0.0
+longitude        = 0.0
+system_capacity  = 5.0
+panel_tilt       = 30
+panel_azimuth    = 180
+# shortname        = my_roof
+# show_current_hour = false
