@@ -2,7 +2,6 @@
 
 A Prometheus exporter that fetches solar energy production forecasts from the [forecast.solar](https://forecast.solar) public API and exposes them as Prometheus metrics.
 
-Designed to be used with the [Prometheus node_exporter textfile collector](https://github.com/prometheus/node_exporter#textfile-collector) or any other mechanism that scrapes `.prom` files.
 
 ## Features
 
@@ -94,24 +93,6 @@ solar_forecast_watt_hours_day{forecast="solar",shortname="my_roof",date="2026-05
 # TYPE solar_forecast_current_hour_watts gauge
 solar_forecast_current_hour_watts{forecast="hourly",shortname="my_roof"} 2140
 ```
-
-## Textfile collector integration
-
-Run the script from cron every 30 minutes and write the output to the node_exporter textfile directory:
-
-```cron
-*/30 * * * * /opt/forecast-solar-exporter/forecast.py \
-  --latitude 40.000 \
-  --longitude 24.000 \
-  --system-capacity 6.0 \
-  --panel-tilt 15 \
-  --panel-azimuth 180 \
-  --shortname my_roof \
-  --show-current-hour \
-  > /var/lib/node_exporter/textfile_collector/solar_forecast.prom 2>/dev/null
-```
-
-The 1-hour response cache means repeated runs within the same hour hit the local cache instead of the API.
 
 ## Caching
 
